@@ -1,4 +1,3 @@
-# Auth Controller#
 class Api::V1::AuthController < ApplicationController
 
   def login
@@ -11,15 +10,15 @@ class Api::V1::AuthController < ApplicationController
     end
   end
 
-def persist
-  if request.headers['Authorization']
-    encoded_token = request.headers['Authorization'].split(' ')[1]
-    token = JWT.decode(encoded_token, secret)
-    user_id = token[0]['user_id']
-    user = User.find(user_id)
-    render json: user
+  def persist
+    if request.headers['Authorization']
+      encoded_token = request.headers['Authorization'].split(' ')[1]
+      token = JWT.decode(encoded_token, secret)
+      user_id = token[0]['user_id']
+      user = User.find(user_id)
+      render json: user
+    end
   end
-end
 
 private
 
