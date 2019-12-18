@@ -1,28 +1,28 @@
-class UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def show
-    render json: user
+    render json: @user
   end
 
   def create
-    user = User.create(user_params)
-      if user.valid?
-        user = user
+    @user = User.create(user_params)
+    if @user.valid?
+      @user = user
         token = JWT.encode({user_id: user.id}, secret, 'HS256')
-        render json: {user: user, token: token}
+        render json: {user: @user, token: token}
       else
-        render json: {errors: user.errors.full_messages}
+        render json: {errors: @user.errors.full_messages}
       end
   end
 
   def update
-    user.update(user_params)
-    render json: user
+    @user.update(user_params)
+    render json: @user
   end
 
   def destroy
-    user.destroy
+    @user.destroy
   end
 
   private
