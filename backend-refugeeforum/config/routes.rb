@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 post 'api/v1/login', to: 'api/v1/auth#login' 
-get 'api/v1/persist', to: 'api/v1/auth#persist'
+get 'api/v1/auth', to: 'api/v1/auth#persist'
 post 'api/v1/create', to: 'api/v1/users#create'
 
 
