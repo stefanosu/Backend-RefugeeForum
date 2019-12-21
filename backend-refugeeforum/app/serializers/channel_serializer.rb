@@ -1,4 +1,4 @@
 class ChannelSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :title, :user_id, :posts
 end

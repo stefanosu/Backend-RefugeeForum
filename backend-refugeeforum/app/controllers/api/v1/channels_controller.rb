@@ -9,7 +9,7 @@ before_action :set_channel, only: [:show, :update, :destroy]
 
   # GET /channel/1
   def show
-    render json: @channel
+    render json: channelSerializer.new(@channel).serialized_json
   end
 
   # POST /channel
@@ -47,7 +47,7 @@ before_action :set_channel, only: [:show, :update, :destroy]
     # Only allow a trusted parameter "white list" through.
     def channel_params
       # byebug
-      params.require(:channel).permit(:name, :user_id)
+      params.require(:channel).permit(:title, :user_id)
     end
 
 end
