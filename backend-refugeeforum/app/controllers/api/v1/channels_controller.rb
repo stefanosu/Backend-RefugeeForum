@@ -4,12 +4,12 @@ before_action :set_channel, only: [:show, :update, :destroy]
   # GET /channels
   def index
     @channels = Channel.all
-    render json: channelSerializer.new(@channel).serialized_json
+    render json: ChannelSerializer.new(@channels).serialized_json
   end
 
   # GET /channel/1
   def show
-    render json: channelSerializer.new(@channel).serialized_json
+    render json: ChannelSerializer.new(@channel).serialized_json
   end
 
   # POST /channel
