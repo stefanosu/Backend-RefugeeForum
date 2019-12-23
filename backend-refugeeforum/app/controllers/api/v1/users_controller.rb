@@ -16,9 +16,9 @@ class Api::V1::UsersController < ApplicationController
       @user = user
         token = JWT.encode({user_id: user.id}, secret, 'HS256')
         render json: {user: @user, token: token}
-      else
+    else
         render json: {errors: @user.errors.full_messages}
-      end
+    end
   end
 
   def update
@@ -27,6 +27,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
+    # byebug
     @user.destroy
   end
 
