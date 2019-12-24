@@ -4,18 +4,20 @@ class Api::V1::CommentsController < ApplicationController
   # GET /comments
   def index
     @comments = Comment.all
-    render json: CommentSerializer.new(@comments).serialized_json
+    render json: @comments
+    #  CommentSerializer.new(@comments).serialized_json
   end
 
   # GET /comments/1
   def show
-    render json: CommentSerializer.new(@comment).serailized_json
+    render json: @comment 
+    # CommentSerializer.new(@comment).serailized_json
   end
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
-    if @comment.save
+    @comment = Comment.create(comment_params)
+    if @comment.valid?
       render json: @comment, status: :created, location: @comment
     else
       render json: @comment.errors, status: :unprocessable_entity
