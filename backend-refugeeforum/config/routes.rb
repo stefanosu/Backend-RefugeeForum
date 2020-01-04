@@ -34,15 +34,13 @@ patch 'api/v1/updateComments', to: 'api/v1/posts#update'
 delete 'api/v1/deleteComments', to: 'api/v1/posts#delete'
 
 
-
-  namespace :api do 
-    namespace :v1 do
-      resources :comments
-      resources :channels
-      resources :posts
-      resources :users
-    end
-  end 
-  
+namespace :api do 
+  namespace :v1 do
+    resources :comments
+    resources :channels
+    resources :posts
+    resources :users
+  end
+end 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

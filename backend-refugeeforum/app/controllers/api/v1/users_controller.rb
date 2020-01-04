@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    render json: @user 
+    render json: @user
     # UserSerializer.new(@user).serialized_json
   end
 
@@ -16,12 +16,12 @@ class Api::V1::UsersController < ApplicationController
     @user = User.create(user_params)
     # @user = user
     if @user.valid?
-        token = JWT.encode({user_id: user.id}, secret, 'HS256')
-        render json:{user: @user, token: token}
-        # UserSerializer.new(@user).serialized_json
-        # {user: @user, token: token}
+      token = JWT.encode({ user_id: user.id }, secret, 'HS256')
+      render json:{ user: @user, token: token }
+      # UserSerializer.new(@user).serialized_json
+      # {user: @user, token: token}
     else
-        render json: {errors: @user.errors.full_messages}
+      render json: { errors: @user.errors.full_messages }
     end
   end
 
@@ -44,5 +44,4 @@ class Api::V1::UsersController < ApplicationController
   def user_params
     params.permit(:username, :password)
   end
-
 end
