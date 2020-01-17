@@ -3,13 +3,13 @@ class Api::V1::UsersController < ApplicationController
 
   def index
     @users = User.all
-    render json: @users
-    # UserSerializer.new(@users).serialized_json
+    # render json: @users
+    UserSerializer.new(@users).serialized_json
   end
 
   def show
-    render json: @user
-    # UserSerializer.new(@user).serialized_json
+    # render json: @user
+    UserSerializer.new(@user).serialized_json
   end
 
   def create
@@ -19,7 +19,6 @@ class Api::V1::UsersController < ApplicationController
       token = JWT.encode({ user_id: user.id }, secret, 'HS256')
       render json:{ user: @user, token: token }
       # UserSerializer.new(@user).serialized_json
-      # {user: @user, token: token}
     else
       render json: { errors: @user.errors.full_messages }
     end
@@ -31,7 +30,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
-    # byebug
     @user.destroy
   end
 

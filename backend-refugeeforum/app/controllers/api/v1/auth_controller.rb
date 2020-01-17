@@ -1,13 +1,11 @@
 class Api::V1::AuthController < ApplicationController
 
   def login
-    # byebug
     user = User.find_by(username: login_params[:username])
+    # byebug
     if user && user.authenticate(login_params[:password])
       token = JWT.encode({ user_id: user.id }, secret, 'HS256')
       render json: { user: UserSerializer.new(user), token: token }
-      # {user: user, token: token}
-
     else
       render json: { errors: user.errors.full_messages }
     end
@@ -20,8 +18,8 @@ class Api::V1::AuthController < ApplicationController
       token = JWT.decode(encoded_token, secret)
       user_id = token[0]['user_id']
       user = User.find(user_id)
-      render json: { user: user }
-      # { user: UserSerializer.new(user).serialized_json}
+      # render json: { user: user }
+      render json: { user: UserSerializer.new(user) }
     end
   end
 
