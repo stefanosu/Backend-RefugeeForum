@@ -7,7 +7,7 @@ before_action :set_channel, only: [:show, :update, :destroy]
     # @users = User.all 
     # @user = User.find(params[:user_id])
     render json: @channels
-    #  ChannelSerializer.new(@channels).serialized_json
+    # ChannelSerializer.new(@channels).serialized_json
   end
 
   # GET /channel/1
@@ -30,7 +30,6 @@ before_action :set_channel, only: [:show, :update, :destroy]
       render json: {errors: @channel.errors.full_messages}
     end
   end
-  
 
   # PATCH/PUT /channel/1
   def update
@@ -48,14 +47,14 @@ before_action :set_channel, only: [:show, :update, :destroy]
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_channel
-      @channel = channel.find(params[:id])
-    end
+  def set_channel
+    @channel = channel.find(params[:id])
+  end
 
     # Only allow a trusted parameter "white list" through.
-    def channel_params
+  def channel_params
       # byebug
       params.require(:channel).permit(:title, :user_id)
-    end
+  end
 
 end
