@@ -18,7 +18,6 @@ before_action :set_channel, only: [:show, :update, :destroy]
   # POST /channel
   def create 
     @channel = Channel.create(channel_params)
-    # byebug
     if @channel.valid? 
       # @user = User.find(params[:user_id])
       render json:  UserSerializer.new(@channel)
