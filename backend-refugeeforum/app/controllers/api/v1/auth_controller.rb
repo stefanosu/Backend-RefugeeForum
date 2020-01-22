@@ -4,7 +4,7 @@ class Api::V1::AuthController < ApplicationController
     @user = User.find_by(username: login_params[:username])
     # byebug
     if @user && @user.authenticate(login_params[:password])
-      token = JWT.encode({ user_id: user.id }, secret, 'HS256')
+      token = JWT.encode({ user_id: @user.id }, secret, 'HS256')
       render json: { user: UserSerializer.new(@user), token: token }
     else
       render json: { errors: @user.errors.full_messages }

@@ -5,27 +5,23 @@ before_action :set_channel, only: [:show, :update, :destroy]
   def index
     @channels = Channel.all
     # @users = User.all 
-    # @user = User.find(params[:user_id])
     render json: @channels
     # ChannelSerializer.new(@channels).serialized_json
   end
 
   # GET /channel/1
   def show
-    # @user = User.find(params[:user_id])
-    render json: @channel
+    render json: @channel 
     # render json: UserSerializer.new(@channel) 
-    # ChannelSerializer.new(@channel).serialized_json
   end
 
   # POST /channel
   def create 
-    @channel = channel.create(channel_params)
+    @channel = Channel.create(channel_params)
     # byebug
     if @channel.valid? 
-      @user = User.find(params[:user_id])
-      render json:  @user 
-      # UserSerializer.new(@user)
+      # @user = User.find(params[:user_id])
+      render json:  UserSerializer.new(@channel)
     else 
       render json: {errors: @channel.errors.full_messages}
     end
@@ -54,7 +50,7 @@ before_action :set_channel, only: [:show, :update, :destroy]
     # Only allow a trusted parameter "white list" through.
   def channel_params
       # byebug
-      params.require(:channel).permit(:title, :user_id)
+      params.permit(:title, :user_id)
   end
 
 end
