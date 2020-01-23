@@ -12,7 +12,6 @@ before_action :set_channel, only: [:show, :update, :destroy]
   # GET /channel/1
   def show
     render json: @channel 
-    # render json: UserSerializer.new(@channel) 
   end
 
   # POST /channel
