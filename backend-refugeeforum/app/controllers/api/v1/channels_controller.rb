@@ -9,7 +9,6 @@ before_action :set_channel, only: [:show, :update, :destroy]
     # ChannelSerializer.new(@channels).serialized_json
   end
 
-  # GET /channel/1
   def show
     render json: @channel 
   end
@@ -34,7 +33,6 @@ before_action :set_channel, only: [:show, :update, :destroy]
     end
   end
 
-  # DELETE /channel/1
   def destroy
     @channel.destroy
   end
