@@ -4,7 +4,6 @@ before_action :set_channel, only: [:show, :update, :destroy]
   # GET /channels
   def index
     @channels = Channel.all
-    # @users = User.all 
     render json: @channels
     # ChannelSerializer.new(@channels).serialized_json
   end
@@ -15,9 +14,10 @@ before_action :set_channel, only: [:show, :update, :destroy]
 
   # POST /channel
   def create 
+    # byebug
     @channel = Channel.create(channel_params)
     if @channel.valid? 
-      # @user = User.find(params[:user_id])
+      @user = User.find(params[:user_id])
       # render json:  UserSerializer.new(@channel)
       render json: @channel
     else 
@@ -43,7 +43,7 @@ before_action :set_channel, only: [:show, :update, :destroy]
   end
 
   def channel_params
-    params.permit(:title, :user_id)
+    params.require(:channel).permit(:title, :user_id)
   end
 
 end
