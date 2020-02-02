@@ -12,7 +12,6 @@ before_action :set_channel, only: [:show, :update, :destroy]
     render json: @channel
   end
 
-  # POST /channel
   def create 
     # byebug
     @channel = Channel.create(channel_params)
@@ -45,5 +44,4 @@ before_action :set_channel, only: [:show, :update, :destroy]
   def channel_params
     params.require(:channel).permit(:title, :user_id)
   end
-
 end
