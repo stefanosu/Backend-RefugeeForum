@@ -22,7 +22,7 @@ before_action :set_channel, only: [:show, :update, :destroy]
     else 
       render json: { errors: channel.errors.full_messages }
     end
-  end
+  end   
 
   def update
     if @channel.update(channel_params)
