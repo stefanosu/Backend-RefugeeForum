@@ -14,12 +14,13 @@ before_action :set_channel, only: [:show, :update, :destroy]
 
   def create 
     # byebug
-    new_channel = User.find(@user[:user_id]).channels.create(title: params[:title])
-    if new_channel.valid?  
+    User.find(@user[:user_id]) 
+    channel = Channel.create(channel_params)
+    if channel.valid?  
       # render json:  UserSerializer.new(@channel)
       render json: { ok: true }, status: 200
     else 
-      render json: { errors: new_channel.errors.full_messages }
+      render json: { errors: channel.errors.full_messages }
     end
   end
 
