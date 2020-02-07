@@ -17,8 +17,8 @@ before_action :set_channel, only: [:show, :update, :destroy]
     User.find(@user[:user_id]) 
     channel = Channel.create(channel_params)
     if channel.valid?  
-      # render json:  UserSerializer.new(@channel)
-      render json: { ok: true }, status: 200
+      render json:  UserSerializer.new(@channel)
+      # render json: { ok: true }, status: 200
     else 
       render json: { errors: channel.errors.full_messages }
     end
