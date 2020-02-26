@@ -14,7 +14,7 @@ before_action :set_channel, only: [:show, :update, :destroy]
 
   def create 
     byebug
-    @user = this_current_user
+    @user = current_site_user
     @channel = @user.channels.create(channel_params)
     if @channel.valid?
       render json:  UserSerializer.new(@channel)

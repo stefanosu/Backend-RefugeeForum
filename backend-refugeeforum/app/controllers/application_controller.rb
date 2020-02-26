@@ -8,6 +8,5 @@ class ApplicationController < ActionController::API
 
   def current_site_user
     @user = User.find_by(username: login_params[:username])
-
   end
 end
