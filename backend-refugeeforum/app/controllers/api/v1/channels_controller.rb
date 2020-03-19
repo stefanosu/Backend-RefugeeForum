@@ -13,7 +13,7 @@ before_action :set_channel, only: [:show, :update, :destroy]
   end
 
   def create 
-    byebug
+    # byebug
     @user = current_site_user
     @channel = @user.channels.create(channel_params)
     if @channel.valid?
