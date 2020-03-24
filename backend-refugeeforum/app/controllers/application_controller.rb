@@ -6,7 +6,8 @@ class ApplicationController < ActionController::API
     'my_secret'
   end
 
-  def current_site_user
-    @user = User.find_by(username: login_params[:username])
-  end
+  # def current_site_user
+
+  #   # @user = User.find_by(username: login_params[:username])
+  # end
 end
