@@ -13,11 +13,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.create(user_params) 
     if @user.valid?
       token = JWT.encode({ user_id: user.id }, secret, 'HS256')
       render json:{ user: @user, token: token }
-      # UserSerializer.new(@user).serialized_json
+      # render json: UserSerializer.new(@user).serialized_json
     else
       render json: { errors: @user.errors.full_messages }
     end
@@ -26,7 +26,7 @@ class Api::V1::UsersController < ApplicationController
   def update
     @user.update(user_params)
     render json: @user
-  end   
+  end
 
   def destroy
     @user.destroy

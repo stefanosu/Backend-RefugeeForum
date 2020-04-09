@@ -15,14 +15,21 @@ before_action :set_channel, only: [:show, :update, :destroy]
   def create 
     # byebug
     @user = current_site_user
-    @channel = @user.channels.create(channel_params)
-    if @channel.valid?
-      render json:  UserSerializer.new(@channel)
-      # render json: { ok: true }, status: 200
+    @channel = channel.user.create(channel_params)
+    if @channel.save
+      render json: UserSerializer.new(@channel)
     else 
-      render json: { errors: @channel.errors.full_messages }
+      render json: {errors: @channel.errors.full_messages}
     end
   end
+    # @channel = @user.channel.create(channel_params)
+    # if @channel.valid?
+    #   render json:  UserSerializer.new(@channel)
+    #   # render json: { ok: true }, status: 200
+    # else 
+    #   render json: { errors: @channel.errors.full_messages }
+    # end
+  # end
 
   def update
     if @channel.update(channel_params)
@@ -42,6 +49,7 @@ before_action :set_channel, only: [:show, :update, :destroy]
   end
 
   def channel_params
-    params.require(:channel).permit(:title, :user_id)
+    # byebug
+    params.require(:channel).permit(:title)
   end
 end

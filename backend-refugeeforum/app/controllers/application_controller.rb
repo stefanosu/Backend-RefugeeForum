@@ -1,13 +1,18 @@
 class ApplicationController < ActionController::API
 
-  # @user = 'dogs' 
 
   def secret
-    'my_secret'
+    'my_secret' 
   end
 
-  # def current_site_user
+  def login_params
+    # byebug
+    params.permit(:username, :password)
+  end
 
-  #   # @user = User.find_by(username: login_params[:username])
-  # end
+  def current_site_user 
+    @user = User.find_by(username: login_params[:username])
+  end
 end
+
+

@@ -23,10 +23,10 @@ class Api::V1::AuthController < ApplicationController
       render json: { user: UserSerializer.new(user) }
     end
   end
+ 
+# private
 
-private
-
-  def login_params
-    params.permit(:username, :password)
-  end
+  # def login_params
+  #   params.permit(:username, :password)
+  # end
 end

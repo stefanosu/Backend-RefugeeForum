@@ -3,5 +3,5 @@ class Channel < ApplicationRecord
   has_many :posts
 
 
-  validates :title, uniqueness: true
+  # validates :title, uniqueness: true
 end
